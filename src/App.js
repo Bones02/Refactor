@@ -7,6 +7,7 @@ import slugify from 'slugify';
 import './App.css';
 import CustomizerOptions from './CustomizerOptions';
 import CartTotal from './CartTotal';
+import SummaryTotal from './SummaryTotal';
 
 // This object will allow us to
 // easily convert numbers into US dollar values
@@ -93,10 +94,10 @@ class App extends Component {
     //   );
     // });
 
-    const total = Object.keys(this.state.selected).reduce(
-      (acc, curr) => acc + this.state.selected[curr].cost,
-      0
-    );
+    // const total = Object.keys(this.state.selected).reduce(
+    //   (acc, curr) => acc + this.state.selected[curr].cost,
+    //   0
+    // );
 
     return (
       <div className="App">
@@ -118,12 +119,15 @@ class App extends Component {
             <CartTotal 
               selected={this.state.selected}
               USCurrencyFormat={USCurrencyFormat}/>
-            <div className="summary__total">
+            <SummaryTotal 
+              USCurrencyFormat={USCurrencyFormat}
+              selected={this.state.selected}/>
+            {/* <div className="summary__total">
               <div className="summary__total__label">Total</div>
               <div className="summary__total__value">
                 {USCurrencyFormat.format(total)}
               </div>
-            </div>
+            </div> */}
           </section>
         </main>
       </div>
