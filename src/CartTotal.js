@@ -22,8 +22,6 @@ const CartTotal = props => {
     0
     );
 return summary;
-
 };
  
-
  export default CartTotal;

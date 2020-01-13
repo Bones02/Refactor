@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-
-// Normalizes string as a slug - a string that is safe to use
-// in both URLs and html attributes
 import slugify from 'slugify';
-
 import './App.css';
-import CustomizerOptions from './CustomizerOptions';
-import CartTotal from './CartTotal';
-import SummaryTotal from './SummaryTotal';
+import MainSummary from './MainSummary';
+import MainForm from './MainForm';
 
 // This object will allow us to
 // easily convert numbers into US dollar values
@@ -45,59 +40,8 @@ class App extends Component {
         selected
      });
      };
-    // //  feature component inside customize 48-76 inside customize
-    //   // feature won't have a render name 
+
     render() {
-    //   const features = Object.keys(this.props.features).map((feature, idx) => {
-    //     const featureHash = feature + '-' + idx;
-    //     const options = this.props.features[feature].map(item => {
-    //       const itemHash = slugify(JSON.stringify(item));
-    //       return (
-    //         <div key={itemHash} className="feature__item">
-    //           <input
-    //             type="radio"
-    //             id={itemHash}
-    //             className="feature__option"
-    //             name={slugify(feature)}
-    //             checked={item.name === this.state.selected[feature].name}
-    //             onChange={e => this.updateFeature(feature, item)}
-    //           />
-    //           <label htmlFor={itemHash} className="feature__label">
-    //             {item.name} ({USCurrencyFormat.format(item.cost)})
-    //           </label>
-    //         </div>
-    //       );
-    //     });
-    //     // render this inside customize component 
-    //     return (
-    //       <fieldset className="feature" key={featureHash}>
-    //         <legend className="feature__name">
-    //           <h3>{feature}</h3>
-    //         </legend>
-    //         {options}
-    //       </fieldset>
-    //     );
-    //   });
-
-    // const summary = Object.keys(this.state.selected).map((feature, idx) => {
-    //   const featureHash = feature + '-' + idx;
-    //   const selectedOption = this.state.selected[feature];
-
-    //   return (
-    //     <div className="summary__option" key={featureHash}>
-    //       <div className="summary__option__label">{feature} </div>
-    //       <div className="summary__option__value">{selectedOption.name}</div>
-    //       <div className="summary__option__cost">
-    //         {USCurrencyFormat.format(selectedOption.cost)}
-    //       </div>
-    //     </div>
-    //   );
-    // });
-
-    // const total = Object.keys(this.state.selected).reduce(
-    //   (acc, curr) => acc + this.state.selected[curr].cost,
-    //   0
-    // );
 
     return (
       <div className="App">
@@ -105,30 +49,15 @@ class App extends Component {
           <h1>ELF Computing | Laptops</h1>
         </header>
         <main>
-          <form className="main__form">
-            <h2>Customize your laptop</h2>
-            <CustomizerOptions 
-              features={this.props.features} 
-              updateFeature={this.updateFeature} 
-              selected={this.state.selected}
-              USCurrencyFormat={USCurrencyFormat}/>
-              
-          </form>
-          <section className="main__summary">
-            <h2>Your cart</h2>
-            <CartTotal 
-              selected={this.state.selected}
-              USCurrencyFormat={USCurrencyFormat}/>
-            <SummaryTotal 
+          <MainForm
+          features={this.props.features} 
+          updateFeature={this.updateFeature} 
+          selected={this.state.selected}
+          USCurrencyFormat={USCurrencyFormat}/>
+
+          <MainSummary
               USCurrencyFormat={USCurrencyFormat}
               selected={this.state.selected}/>
-            {/* <div className="summary__total">
-              <div className="summary__total__label">Total</div>
-              <div className="summary__total__value">
-                {USCurrencyFormat.format(total)}
-              </div>
-            </div> */}
-          </section>
         </main>
       </div>
     );
